@@ -1,0 +1,327 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sepet</title>
+    <style>
+        .subtext {
+            font-size: 40pt;
+            margin-left: 50px;
+            margin-right: 50px;
+            margin-top: 35px;
+            margin-bottom: 20px;
+        }
+
+        .name {
+            align-items: center;
+        }
+
+        .subtext2 {
+            font-size: 30pt;
+            border-top: 1px solid gray;
+            margin-left: 100px;
+            margin-right: 100px;
+            padding-top: 10px;
+            padding-left: 50px;
+            padding-right: 50px;
+            padding-bottom: 10px;
+            margin-top: 25px;
+            margin-bottom: 25px;
+        }
+
+        #navbar {
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        #toplam {
+            display: inline;
+            width: 500px;
+            margin: 200px;
+            margin-top: 100px;
+            align-items: center;
+            text-align: center;
+            background-color: transparent;
+            border: 1px solid transparent;
+            border-radius: 12px;
+            box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px, rgba(0, 0, 0, .14) 0 6px 10px 0, rgba(0, 0, 0, .12) 0 1px 18px 0;
+
+        }
+
+        #urunler {
+            display: inline;
+            width: -webkit-fill-available;
+        }
+
+        .buton {
+            margin-left: 5%;
+            margin-bottom: 30px;
+            align-items: center;
+            appearance: none;
+            border-radius: 12px;
+            border-style: none;
+            border: 1px solid darkgray;
+            box-sizing: border-box;
+            color: #3c4043;
+            background-color: #F7CA00;
+            cursor: pointer;
+            display: inline-flex;
+            fill: currentcolor;
+            font-family: "Google Sans", Roboto, Arial, sans-serif;
+            font-size: 20px;
+            font-weight: 500;
+            height: 48px;
+            justify-content: center;
+            letter-spacing: .25px;
+            line-height: normal;
+            max-width: 100%;
+            overflow: visible;
+            padding: 2px 24px;
+            position: relative;
+            text-align: center;
+            text-transform: none;
+            transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1), opacity 15ms linear 30ms, transform 270ms cubic-bezier(0, 0, .2, 1) 0ms;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            width: auto;
+            will-change: transform, opacity;
+            z-index: 0;
+        }
+
+        .buton2 {
+            margin-top: 30px;
+            align-items: center;
+            appearance: none;
+            border-radius: 12px;
+            border-style: none;
+            border: 1px solid darkgray;
+            box-sizing: border-box;
+            color: #3c4043;
+            background-color: #F7CA00;
+            cursor: pointer;
+            display: inline-flex;
+            fill: currentcolor;
+            font-family: "Google Sans", Roboto, Arial, sans-serif;
+            font-size: 20px;
+            font-weight: 500;
+            height: 48px;
+            justify-content: center;
+            letter-spacing: .25px;
+            line-height: normal;
+            max-width: 100%;
+            overflow: visible;
+            padding: 2px 24px;
+            position: relative;
+            text-align: center;
+            text-transform: none;
+            transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1), opacity 15ms linear 30ms, transform 270ms cubic-bezier(0, 0, .2, 1) 0ms;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            width: auto;
+            will-change: transform, opacity;
+            z-index: 0;
+        }
+
+        .box {
+            width: auto;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            background-color: transparent;
+            border: 1px solid transparent;
+            border-radius: 12px;
+            box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px, rgba(0, 0, 0, .14) 0 6px 10px 0, rgba(0, 0, 0, .12) 0 1px 18px 0;
+            margin: 25px;
+            padding-left: 20%;
+            background-image: "C:\\Users\\yavuz\\Desktop\\Bitirme_Projesi\\static\\background.jpg"
+        }
+
+        #navbar a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        #navbar p {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+            margin: 0;
+        }
+
+        #navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        #navbar a.active {
+            background-color: #04AA6D;
+            color: black;
+        }
+    </style>
+</head>
+
+<body onload="getin(tum_urunler)">
+    <script>
+        var toplam = 0
+        var user_id = "{{id}}";
+        var liste = "{{liste}}";
+        var pf = "{{pf}}"
+        var tum_urunler = "{{tum_urunler}}"
+        var mycart = liste.split(",")
+
+        var urun_listesi = []
+        var tum = tum_urunler.replace('[', '').replace(']', '').replaceAll('&#39;', '').split(", ")
+        for (var i = 0; i < tum.length; i++) {
+            var person = {
+                urun_kodu: tum[i].split("+")[0],
+                fiyat: tum[i].split("+")[1],
+            };
+            urun_listesi.push(person)
+        }
+        function getprice(id) {
+            var check
+            for (var i = 0; i < urun_listesi.length; i++) {
+                if (id == urun_listesi[i]["urun_kodu"]) {
+                    check = i
+                    break
+                }
+            }
+            return parseInt(urun_listesi[check]["fiyat"])
+        }
+
+        function getin(str) {
+            var array = str.replace('[', '').replace(']', '').replaceAll('&#39;', '').split(", ")
+            listoflist = []
+            var div = ''
+            
+            var a = 0
+            for (var i in array) {
+                if (mycart.includes(array[i].split("+")[0])) {
+                    div += '<div class="box"><img src="..\\..\\..\\..\\static\\example_small.jpg" alt="">'
+                    div += '<div class="name"><p class="subtext">' + array[i].split("+")[0] + '</p><p class="subtext2">' + (getprice(array[i].split("+")[0]) * pf).toFixed(2) +
+                        ' ₺</p></div><label style="font-size: 30pt;">Adet: </label><br><input onchange="toplamHesapla()" type="number" min="1" value="1" style="width:50pt;font-size: 30pt;" id="adet' + array[i].split("+")[0] + '" name="adet' + array[i].split("+")[0] + '"><button class="buton"  onclick=" removeToCart(\'' + array[i].split("+")[0] + '\') ">Sepetten Çıkar</button></div>'
+                        toplamTut(array[i].split("+")[0],getprice(array[i].split("+")[0]) * pf) 
+                    a += 1
+                }
+            }
+            if ((mycart.length == 1 && mycart[0] == "0") || mycart.length == 0) {
+                div += '<div style="text-align:center"><div style="font-size:75pt;text-align:center;">Sepette Ürün Yok</div><br>'
+                div += '<button class="buton2" id="back" >Alışverişe Devam Et</button></div>'
+            }
+            document.getElementById('urunler').innerHTML = div
+            toplamHesapla()
+            document.getElementById("back").onclick = function () {
+                location.href = 'http://127.0.0.1:5000/main/' + user_id;
+            };
+        }
+        
+        var listoflist = []
+
+        function toplamTut(kod,tutar) {
+            var kont = 0
+            for(var i = 0;i<listoflist.length;i++){
+                if(listoflist[i][0] == kod){
+                    kont = 1
+                }else{
+                    kont = 0
+                }
+            }
+            if (kont == 0){
+                small_list = [kod,tutar]
+                listoflist.push(small_list)
+            }
+            
+        }
+        function toplamHesapla(){
+            toplam = 0
+            console.log(listoflist)
+            for(var i = 0;i<listoflist.length;i++){
+                adett = document.getElementById("adet"+listoflist[i][0]).value
+                toplam += listoflist[i][1]*adett
+            }
+            document.getElementById('tutar').innerHTML = toplam.toFixed(2) + " ₺"
+        }
+
+        function removeValue(arr, value) {
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i] == value) {
+                    arr.splice(i, 1);
+                    break;
+                }
+            }
+            for(var i = 0;i<listoflist.length;i++){
+                if (listoflist[i][0] == value) {
+                    console.log(listoflist)
+                    listoflist.splice(i, 1);
+                    console.log(listoflist)
+                    break;
+                }
+            }
+            
+            return arr;
+        }
+        function removeToCart(str) {
+            mycart = removeValue(mycart, str)
+            for (var i = 0; i < mycart.length; i++) {
+                if (i == 0) {
+                    liste = mycart[i]
+                } else {
+                    liste = liste + "," + mycart[i]
+                }
+            }
+            getin(tum_urunler)
+        }
+
+        function getShoppingList() {
+            var shopping_list = user_id
+            for (var i = 0; i < mycart.length; i++) {
+                shopping_list = shopping_list + "," + mycart[i] + "+" + document.getElementById("adet" + mycart[i]).value
+            }
+            console.log(shopping_list)
+            document.getElementById("shoppinglist").value = shopping_list
+        }
+    </script>
+    <div id="navbar">
+        <p id="show-user" ,name="user" style="background-color: #F7CA00;color: #333;">{{id}}</p>
+    </div>
+    <h1 style="font-size: 35pt;">Sepet İçeriği</h1>
+    <div style="display: flex;">
+
+        <div id="urunler">
+        </div>
+
+        <div id="toplam">
+            <div>
+                <button class="buton2" onclick="location.href = 'http://127.0.0.1:5000/main/'+user_id;">Alışverişe Devam
+                    Et</button>
+            </div>
+
+            <div>
+                <form action="" method="post">
+                    <input name="shoppinglist" type="text" id="shoppinglist" style="visibility: hidden;">
+                    <h1>Ara Toplam:</h1>
+                    <h1 id="tutar"></h1>
+                    <button class="buton" onclick="getShoppingList()" style="margin-left: 0;">Alışverişi
+                        Tamamla</button>
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+</body>
+
+</html>

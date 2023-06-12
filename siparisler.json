@@ -1,0 +1,17 @@
+{
+    "orders": [
+        {
+            "user_id": "18028",
+            "order": [
+                {
+                    "urun_kodu": "7102117",
+                    "miktar": "1"
+                },
+                {
+                    "urun_kodu": "7102109",
+                    "miktar": "1"
+                }
+            ]
+        }
+    ]
+}

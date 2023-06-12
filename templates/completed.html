@@ -1,0 +1,72 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Çiloğlu</title>
+    <style>
+        .completed{
+            font-family: "Google Sans", Roboto, Arial, sans-serif;
+            font-size: 75pt;
+            color: #333333;
+        }
+        .body{
+            background-color: #333333;
+        }
+        .div{
+            margin-top: 10%;
+            text-align: center;
+            background-color: #F7CA00;
+        }
+        .buton {
+            margin-bottom: 30px;
+            align-items: center;
+            appearance: none;
+            border-radius: 12px;
+            border-style: none;
+            border: 1px solid darkgray;
+            box-sizing: border-box;
+            color: #F7CA00;
+            background-color: #333333;
+            cursor: pointer;
+            display: inline-flex;
+            fill: currentcolor;
+            font-family: "Google Sans", Roboto, Arial, sans-serif;
+            font-size: 20px;
+            font-weight: 500;
+            height: 48px;
+            justify-content: center;
+            letter-spacing: .25px;
+            line-height: normal;
+            max-width: 100%;
+            overflow: visible;
+            padding: 2px 24px;
+            position: relative;
+            text-align: center;
+            text-transform: none;
+            transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1), opacity 15ms linear 30ms, transform 270ms cubic-bezier(0, 0, .2, 1) 0ms;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            width: auto;
+            will-change: transform, opacity;
+            z-index: 0;
+        }
+        .buton:hover{
+            border: 1px solid black;
+            color: #333333;
+            background-color: #F7CA00;
+        }
+    </style>
+</head>
+<body class="body">
+    <script>
+        user_id = "{{id}}"
+    </script>
+<div class="div">
+    <h1 class="completed">Siparişiniz Alındı</h1>
+    <h1></h1>
+    <button class="buton" onclick="location.href = 'http://127.0.0.1:5000/main/'+user_id;">Anasayfa</button>
+</div>
+</body>
+</html>
